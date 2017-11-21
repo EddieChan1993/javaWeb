@@ -1,26 +1,26 @@
 import javax.servlet.ServletException;
-import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import java.io.IOException;
 import java.io.PrintWriter;
 
-/**
- * Created by EVE on 2017/11/19.
- */
-@WebServlet("/aa")
+//@WebServlet("/beer")
+//99.9999%的servlet都是HttpServlet
 public class HelloWorld extends HttpServlet {
     private String message;
 
     @Override
+    //99.9%的servlet都会覆盖doGet或doPost方法
     protected void doGet(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
+        System.out.println("GET请求收到");
         resp.setContentType("text/html");
 
-//设置逻辑实现
+        //在servlet从容器得到的响应对象中，
+        //可以拿到一个PrintWriter，使用这个
+        //PrintWriter能够将HTML文本输出到响应对象
         PrintWriter out = resp.getWriter();
-        out.println("<h1>"+message+"</h1>");
-        System.out.println("asdf");
+        out.println("<h1>" + message + "</h1>");
     }
 
     @Override
